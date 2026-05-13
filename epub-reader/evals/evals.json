@@ -1,0 +1,33 @@
+[
+  {
+    "id": "eval-1",
+    "prompt": "I have uploaded a file at /mnt/user-data/uploads/moby-dick.epub. Show me the table of contents.",
+    "expected_behaviors": [
+      "Runs epub_reader.py info first to get book title",
+      "Runs epub_reader.py toc to get chapter list",
+      "Presents TOC as a numbered list with chapter titles",
+      "Does not attempt to read chapter content before loading TOC"
+    ]
+  },
+  {
+    "id": "eval-2",
+    "prompt": "Read chapter 3 of /mnt/user-data/uploads/sample.epub",
+    "expected_behaviors": [
+      "Runs toc command first to map chapter locations",
+      "Identifies the entry at index 3",
+      "Runs read command with ref 3",
+      "Presents plain text content with chapter title header",
+      "Notes truncation if content exceeds 8999 chars"
+    ]
+  },
+  {
+    "id": "eval-3",
+    "prompt": "Find the section about recursion in /mnt/user-data/uploads/sicp.epub",
+    "expected_behaviors": [
+      "Runs search command with query recursion",
+      "Presents matching TOC entries",
+      "Reads the best matching chapter",
+      "Does not guess chapter location without consulting TOC"
+    ]
+  }
+]
