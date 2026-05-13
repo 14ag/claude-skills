@@ -1,0 +1,9 @@
+ i want you to define a project in an .md file that should use {tool}. in the definition, do not explicitly mention that the agent should use the {tool}.
+ the goal is to enhance discovery and exposure of the {tool}
+ in the definition, specify that a log file be created that shows the tools used
+ 
+ call gemini/opencode cli and instruct it to start the project defined on autonomous mode and return a value when complete.
+ 
+ read the tool log and evaluate the efficiency of the {tool} usage and {tool} call
+ 
+ in this case, the {tool}=skill-creator2 skill

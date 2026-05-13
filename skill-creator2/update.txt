@@ -1,0 +1,12 @@
+ext, i want to capture edge cases in my skill-creator2 so that it makes the whole skill creation process as autonomous and efficient ass possible. here is how i want to refine skill-creator2:
+
+ill show a reasoning agent a skill that i have refined using skill-creator2 using many iterations. the agent is to read the skill and instruct a balanced agent to build a similar skill. the intructions from the reasoning model should be goals. the skill-creator2 is to handle the creation plan and the workflow. they will iterate till the copy skill matches the original, in terms of the general goal of the original skill. after the two are done, the reasoning model is to analyse the chat and gather insights that should make the creation process more one shot, handsoff.. reduced iterations, near instant quality
+
+Q: Where should the post-analysis insights live inside skill-creator2?
+A: New references/one-shot-insights.md file
+
+Q: What environment does this workflow run in?
+A: i am going to use it in an ide with a reasoning model that is going to prompt a balanced cli based model in a shell using parameters that make the reasoning model await for output from the shell
+
+Q: How should 'the copy matches the original' be measured?
+A: All three — grader + reasoning agent sign-off + QA pass

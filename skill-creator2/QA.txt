@@ -1,0 +1,44 @@
+is the frontmatter metadata (name, description) valid and correctly enclosed in YAML?
+are the triggers in the description specific and actionable?
+does the description guide the model to use it exactly when users want to create, modify, or evaluate skills?
+does the skill-creator describe its workflow in clean, imperative instructions?
+does the skill-creator explicitly instruct to never use emojis?
+does the skill-creator actively avoid AI fluff words (e.g. "delve", "robust", "tapestry", "seamless")?
+does the skill-creator actively enforce a comprehensive QA check step during the iteration loop of skill generation?
+is there a feature that is implemented but not exposed?
+does the skill-creator require the generated or refined skill to contain a `QA.txt` for automated and/or user evaluation?
+are edge cases gracefully handled (e.g. Claude.ai single agents vs. subagent workflows)?
+does the skill-creator explicitly enforce the Progressive Disclosure standard, ensuring generated/modified skills extract implementation details into references/ to act as lightweight context-saving routers?
+does the skill-creator systematically reduce output entropy by employing strict, repeatable methods?
+did the creation or refinement of the skill-creator involve formulating its rules based on well-researched, professional industry standards?
+does the skill-creator require reading `references/prompt-engineering-best-practices.md` before writing or revising prompt text?
+does the interview flow require drafting three candidate prompt formulations before writing the skill?
+does the skill-creator instruct authors to structure prompt blocks as role -> context -> task -> constraints -> output format?
+does the skill-creator require reasoning guidance only when the task genuinely benefits from it?
+does the skill-creator require self-check patterns for evaluative or assessable outputs?
+does the evaluation loop include the prompt quality checklist before user review?
+does the eval loop enforce `python -m scripts.quick_validate .` immediately followed by mandatory QA against the skill's `QA.txt`?
+does the workflow define a passing QA result as every question in the created or edited skill root `QA.txt` being answered `yes`?
+are all markdown files in `agents/` integrated into the main test workflow alongside `quick_validate`, mandatory QA, and user review?
+does the description optimization guidance require concrete situations and at least one example trigger phrase?
+does the skill-creator recommend XML-style tags or other delimiters when prompts mix instructions, examples, context, and inputs?
+does the skill-creator ground long-context work in quoted or clearly identified evidence before synthesis or grading?
+does the skill-creator surface hidden assumptions or ask for clarification instead of guessing when requirements are underspecified?
+does the skill-creator have a way to automatically capture the users responses from the eval viewer?
+does the user-review workflow have an explicit entrypoint from triage/main flow so review is triggered before iteration edits unless the user opts out?
+does the user-review workflow use eval-viewer auto-submit (`--wait-for-submit`) so the agent resumes without requiring the user to say they are done?
+on review submit, does the viewer attempt to close its tab automatically?
+does the skill-creator default to highest reasoning effort for design-critical work that reduces future user effort, unless the user explicitly asks for speed?
+does a vague request like "improve this skill" route to the QA-first intake path before broad requirements interviews?
+does the skill avoid blocking on missing specs by generating a QA-derived improvement brief first?
+is the vague-improvement entrypoint visible near the primary workflow entry (fast path + triage), not buried later?
+does the intake flow require presenting 2-3 concrete improvement options with a recommended default?
+does the description include concrete trigger phrases for underspecified refinement requests (for example "improve this skill", "refine this one", "make this better")?
+is SKILL.md kept router-lean with procedural depth moved into references/intake-and-triage.md and references/eval-loop.md?
+
+does the workflow enforce a one-time QA bootstrap before any create/edit/evaluate action (ensure QA.txt and merge missing assets/QA.txt questions as-is)?
+does each edit cycle enforce the exact order: QA pass #1 -> description review -> append skill-specific QA checks -> QA pass #2?
+does the second QA pass explicitly confirm no regressions and that the original objective is still being met before presenting results?
+Does the skill-creator2 intake-and-triage reference instruct searching hobbyist social platforms before writing a skill targeting a practitioner community?
+Does the platform lookup table cover at least: Android root modding, game modding, hardware/embedded, homelab, creative tools, security/RE, and general maker communities?
+Does the research step require recording community findings in references/design-log.md before drafting skill content?
