@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Documentation — Missing Information</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 680px;
+      padding: 2rem;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .header svg { flex-shrink: 0; }
+
+    .header h1 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #f0f6fc;
+    }
+
+    .header p {
+      font-size: 0.825rem;
+      color: #8b949e;
+      margin-top: 0.2rem;
+    }
+
+    .notice {
+      background: #161b22;
+      border: 1px solid #388bfd40;
+      border-left: 3px solid #388bfd;
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      font-size: 0.825rem;
+      color: #79c0ff;
+      margin-bottom: 1.75rem;
+    }
+
+    .section-title {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #8b949e;
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #21262d;
+    }
+
+    .field { margin-bottom: 1.25rem; }
+
+    label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #c9d1d9;
+      margin-bottom: 0.4rem;
+    }
+
+    label .required { color: #f85149; margin-left: 2px; }
+    label .optional { color: #8b949e; font-weight: 400; font-size: 0.8rem; margin-left: 4px; }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    textarea,
+    select {
+      width: 100%;
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      color: #e6edf3;
+      font-size: 0.875rem;
+      padding: 0.55rem 0.75rem;
+      transition: border-color 0.15s;
+      outline: none;
+      font-family: inherit;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #388bfd;
+      box-shadow: 0 0 0 3px #388bfd22;
+    }
+
+    textarea { resize: vertical; min-height: 80px; }
+
+    .hint {
+      font-size: 0.775rem;
+      color: #8b949e;
+      margin-top: 0.3rem;
+    }
+
+    .radio-group, .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.4rem;
+    }
+
+    .radio-group label, .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #21262d;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 0.4rem 0.75rem;
+      cursor: pointer;
+      font-size: 0.825rem;
+      color: #c9d1d9;
+      font-weight: 400;
+      transition: border-color 0.15s, background 0.15s;
+      margin-bottom: 0;
+    }
+
+    .radio-group input[type="radio"],
+    .checkbox-group input[type="checkbox"] {
+      width: auto;
+      margin: 0;
+      accent-color: #388bfd;
+    }
+
+    .radio-group label:has(input:checked),
+    .checkbox-group label:has(input:checked) {
+      border-color: #388bfd;
+      background: #1f2d3d;
+      color: #79c0ff;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #21262d;
+      margin: 1.5rem 0;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: flex-end;
+      margin-top: 1.75rem;
+    }
+
+    button {
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.55rem 1.25rem;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: opacity 0.15s, background 0.15s;
+    }
+
+    .btn-primary {
+      background: #238636;
+      border-color: #2ea043;
+      color: #ffffff;
+    }
+    .btn-primary:hover { background: #2ea043; }
+
+    .btn-secondary {
+      background: transparent;
+      border-color: #30363d;
+      color: #c9d1d9;
+    }
+    .btn-secondary:hover { background: #21262d; }
+
+    .output-section {
+      display: none;
+      margin-top: 1.5rem;
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 1rem;
+    }
+
+    .output-section.visible { display: block; }
+
+    .output-section pre {
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 0.775rem;
+      color: #79c0ff;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .copy-btn {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.65rem;
+      margin-bottom: 0.75rem;
+      background: #21262d;
+      border-color: #30363d;
+      color: #c9d1d9;
+    }
+  </style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <svg width="28" height="28" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8V1.5Z"
+        fill="#79c0ff"/>
+    </svg>
+    <div>
+      <h1>Project Documentation Setup</h1>
+      <p>Some information couldn't be found in your project. Please fill in the fields below.</p>
+    </div>
+  </div>
+
+  <div class="notice">
+    ℹ️ Only fields that couldn't be automatically detected are shown here. Everything else was
+    already extracted from your project files.
+  </div>
+
+  <form id="docForm" onsubmit="handleSubmit(event)">
+
+    <!-- ── IDENTITY ── -->
+    <div class="section-title">Project Identity</div>
+
+    <div class="field" id="field-name">
+      <label for="projectName">Project Name <span class="required">*</span></label>
+      <input type="text" id="projectName" name="projectName" placeholder="my-awesome-project" />
+      <div class="hint">Used in README title and badges. Keep it lowercase with hyphens.</div>
+    </div>
+
+    <div class="field" id="field-description">
+      <label for="description">One-line Description <span class="required">*</span></label>
+      <input type="text" id="description" name="description"
+        placeholder="A fast, lightweight tool for doing X." />
+      <div class="hint">Appears at the top of the README and in GitHub's repository description.</div>
+    </div>
+
+    <div class="field" id="field-audience">
+      <label>Target Audience <span class="required">*</span></label>
+      <div class="radio-group">
+        <label><input type="radio" name="audience" value="developers" /> Developers</label>
+        <label><input type="radio" name="audience" value="end-users" /> End Users</label>
+        <label><input type="radio" name="audience" value="both" checked /> Both</label>
+        <label><input type="radio" name="audience" value="internal" /> Internal Team Only</label>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ── LEGAL ── -->
+    <div class="section-title">Legal & Visibility</div>
+
+    <div class="field" id="field-license">
+      <label for="license">License <span class="required">*</span></label>
+      <select id="license" name="license">
+        <option value="">— select a license —</option>
+        <option value="MIT">MIT</option>
+        <option value="Apache-2.0">Apache 2.0</option>
+        <option value="GPL-3.0">GPL v3</option>
+        <option value="BSD-3-Clause">BSD 3-Clause</option>
+        <option value="MPL-2.0">Mozilla Public License 2.0</option>
+        <option value="Proprietary">Proprietary / Internal</option>
+      </select>
+    </div>
+
+    <div class="field" id="field-visibility">
+      <label>Project Visibility</label>
+      <div class="radio-group">
+        <label><input type="radio" name="visibility" value="public" checked /> Public (Open Source)</label>
+        <label><input type="radio" name="visibility" value="private" /> Private / Internal</label>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ── CONTACT ── -->
+    <div class="section-title">Maintainer Contact</div>
+
+    <div class="field" id="field-maintainer">
+      <label for="maintainer">Maintainer Name <span class="optional">(optional)</span></label>
+      <input type="text" id="maintainer" name="maintainer" placeholder="Jane Doe" />
+    </div>
+
+    <div class="field" id="field-email">
+      <label for="email">Security Contact Email <span class="required">*</span></label>
+      <input type="email" id="email" name="email" placeholder="security@example.com" />
+      <div class="hint">Used in SECURITY.md for vulnerability reports.</div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ── WIKI ── -->
+    <div class="section-title">Wiki Generation</div>
+
+    <div class="field" id="field-wiki">
+      <label>Generate Wiki Pages?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="wiki" value="github" /> GitHub Wiki</label>
+        <label><input type="radio" name="wiki" value="ado" /> Azure DevOps Wiki</label>
+        <label><input type="radio" name="wiki" value="both" /> Both</label>
+        <label><input type="radio" name="wiki" value="none" checked /> Skip Wiki</label>
+      </div>
+    </div>
+
+    <div class="field" id="field-repoUrl">
+      <label for="repoUrl">Repository URL <span class="optional">(optional)</span></label>
+      <input type="url" id="repoUrl" name="repoUrl" placeholder="https://github.com/owner/repo" />
+      <div class="hint">Required if generating GitHub Wiki push instructions.</div>
+    </div>
+
+    <div class="btn-row">
+      <button type="button" class="btn-secondary" onclick="window.close()">Cancel</button>
+      <button type="submit" class="btn-primary">Generate Documentation →</button>
+    </div>
+
+  </form>
+
+  <div class="output-section" id="outputSection">
+    <button class="btn-secondary copy-btn" onclick="copyOutput()">📋 Copy JSON</button>
+    <pre id="outputPre"></pre>
+  </div>
+
+</div>
+
+<script>
+  // Hide fields that were already resolved (injected by PowerShell script via URL params)
+  const params = new URLSearchParams(window.location.search);
+  const prefilled = {};
+
+  params.forEach((value, key) => {
+    prefilled[key] = value;
+    const el = document.getElementById(key);
+    if (el) {
+      el.value = value;
+      const fieldEl = document.getElementById('field-' + key);
+      // if pre-filled and not an empty placeholder, hide the field
+      if (fieldEl && value && value !== '__missing__') {
+        fieldEl.style.display = 'none';
+      }
+    }
+  });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    const data = {};
+    fd.forEach((v, k) => { data[k] = v; });
+
+    // Merge prefilled values
+    Object.assign(data, prefilled);
+
+    const json = JSON.stringify(data, null, 2);
+    document.getElementById('outputPre').textContent = json;
+    document.getElementById('outputSection').classList.add('visible');
+
+    // Write to a temp file the PS script can read
+    try {
+      // In environments where file: protocol is accessible via fetch, write to output path
+      fetch('http://localhost:__PORT__/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: json
+      }).catch(() => {});
+    } catch (_) {}
+
+    document.getElementById('outputSection').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function copyOutput() {
+    navigator.clipboard.writeText(document.getElementById('outputPre').textContent)
+      .then(() => alert('Copied to clipboard!'))
+      .catch(() => alert('Press Ctrl+C to copy the text above.'));
+  }
+</script>
+</body>
+</html>

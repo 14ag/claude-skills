@@ -37,3 +37,11 @@ Does the skill include principles from Open-Detector?
 Does the skill contain no emoji in the documentation?
 Does the skill's own generated content follow the rules it teaches (dogfood check)?
 Does every non-root file in the skill folder have at least one explicit mention in SKILL.md (no orphaned files)?
+Does the skill include a probabilistic-signals reference covering perplexity, burstiness, nominal loading, and overt conjunctive framing?
+Does the skill's process follow the three-stage Reconstruct Framework (Diagnostic, Probabilistic Disruption, Structural Style Transfer)?
+Does the language-style-patterns reference include nominal loading rules and functional morphology strategies (pronouns, auxiliaries, contractions)?
+Does the communication-patterns reference include the SHAP-flagged overt conjunctive phrases list?
+Does the detect_ai.py script emit burstiness, nominal loading, overt conjunctive, and contraction density metrics in addition to the BERT score?
+Does detect_ai.py support a --no-model flag for stylometric-only runs without requiring torch/transformers?
+Does SKILL.md specify that Stage 2 changes should be applied in priority order (vocabulary first)?
+Does SKILL.md describe what each stylometric metric's output means and what the target range is?

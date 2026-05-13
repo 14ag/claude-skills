@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit repository details</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 4rem 1rem;
+    }
+    .modal {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      width: 100%;
+      max-width: 440px;
+    }
+    .modal-header {
+      padding: 16px;
+      border-bottom: 1px solid #21262d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #161b22;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+    }
+    .modal-header h1 {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .modal-body {
+      padding: 16px;
+    }
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: #e6edf3;
+      margin-bottom: 6px;
+    }
+    .field {
+      margin-bottom: 16px;
+    }
+    .hint {
+      font-size: 12px;
+      color: #8b949e;
+      margin-top: 4px;
+    }
+    input[type="text"], input[type="url"], textarea {
+      width: 100%;
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      color: #e6edf3;
+      font-size: 14px;
+      padding: 5px 12px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    textarea {
+      min-height: 100px;
+      padding-top: 8px;
+    }
+    input:focus, textarea:focus {
+      border-color: #388bfd;
+      box-shadow: 0 0 0 3px #1f2d3d;
+    }
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .checkbox-row label {
+      margin-bottom: 0;
+      font-weight: 400;
+      cursor: pointer;
+    }
+    
+    /* Topics container */
+    .topics-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 4px 8px;
+      align-items: center;
+    }
+    .topics-container:focus-within {
+      border-color: #388bfd;
+      box-shadow: 0 0 0 3px #1f2d3d;
+    }
+    .topic-tag {
+      background: rgba(56, 139, 253, 0.15);
+      color: #388bfd;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 0 10px;
+      line-height: 22px;
+      border-radius: 2em;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .topic-remove {
+      cursor: pointer;
+      color: #388bfd;
+      font-weight: bold;
+      opacity: 0.7;
+    }
+    .topic-remove:hover {
+      opacity: 1;
+    }
+    .topic-input {
+      flex: 1;
+      min-width: 100px;
+      background: transparent;
+      border: none;
+      color: #e6edf3;
+      font-size: 14px;
+      outline: none;
+      padding: 4px 0;
+    }
+    
+    .suggestions {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #8b949e;
+    }
+    .suggested-tag {
+      display: inline-block;
+      margin-top: 4px;
+      background: #21262d;
+      color: #c9d1d9;
+      font-size: 12px;
+      padding: 0 10px;
+      line-height: 22px;
+      border-radius: 2em;
+      cursor: pointer;
+      margin-right: 6px;
+      transition: background 0.15s;
+    }
+    .suggested-tag:hover {
+      background: #30363d;
+    }
+
+    .modal-footer {
+      padding: 16px;
+      border-top: 1px solid #21262d;
+      display: flex;
+      justify-content: flex-end;
+      background-color: #161b22;
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+    button {
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 5px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      line-height: 20px;
+    }
+    .btn-primary {
+      background-color: #238636;
+      border-color: rgba(240, 246, 252, 0.1);
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      background-color: #2ea043;
+    }
+    .btn-secondary {
+      background-color: #21262d;
+      border-color: rgba(240, 246, 252, 0.1);
+      color: #c9d1d9;
+    }
+    .btn-secondary:hover {
+      background-color: #30363d;
+      border-color: #8b949e;
+    }
+  </style>
+</head>
+<body>
+
+<div class="modal">
+  <div class="modal-header">
+    <h1>Edit repository details</h1>
+  </div>
+  <form id="settingsForm" onsubmit="handleSubmit(event)">
+    <div class="modal-body">
+      
+      <div class="field">
+        <label for="description">Description</label>
+        <textarea id="description" name="description"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="website">Website</label>
+        <input type="url" id="website" name="website" placeholder="https://" />
+        <div class="checkbox-row" style="margin-top: 8px;">
+          <input type="checkbox" id="includeInHome" name="includeInHome" value="true" checked />
+          <label for="includeInHome">Include in the home page</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Topics</label>
+        <div class="topics-container" id="topicsContainer" onclick="document.getElementById('topicInput').focus()">
+          <!-- Tags will go here -->
+          <input type="text" id="topicInput" class="topic-input" placeholder="Add topics" autocomplete="off" />
+        </div>
+        <div class="hint">Separate topics with a comma or space.</div>
+        
+        <div class="suggestions" id="suggestionsContainer" style="display: none;">
+          Suggested topics: <div id="suggestionList" style="display:inline;"></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer" style="gap: 8px;">
+      <button type="submit" class="btn-primary">Save changes</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  const topicsInfo = new Set();
+  const topicInput = document.getElementById('topicInput');
+  const topicsContainer = document.getElementById('topicsContainer');
+  const suggestionList = document.getElementById('suggestionList');
+  const suggestionsContainer = document.getElementById('suggestionsContainer');
+
+  // Load suggestions from URL
+  const params = new URLSearchParams(window.location.search);
+  const rawSuggestions = params.get('suggestions');
+  if (rawSuggestions) {
+    const suggestionsArr = rawSuggestions.split(',').filter(x => x.trim() !== '');
+    if (suggestionsArr.length > 0) {
+      suggestionsContainer.style.display = 'block';
+      suggestionsArr.forEach(s => {
+        const span = document.createElement('span');
+        span.className = 'suggested-tag';
+        span.textContent = '+' + s.trim();
+        span.onclick = () => addTopic(s.trim());
+        suggestionList.appendChild(span);
+      });
+    }
+  }
+
+  topicInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ',' || e.key === ' ') {
+      e.preventDefault();
+      addTopic(topicInput.value);
+    } else if (e.key === 'Backspace' && topicInput.value === '') {
+      // Remove last topic
+      const lastTag = [...topicsInfo].pop();
+      if (lastTag) removeTopic(lastTag);
+    }
+  });
+
+  function addTopic(text) {
+    const val = text.trim().toLowerCase().replace(/[^a-z0-9\-]/g, '');
+    if (val && !topicsInfo.has(val)) {
+      topicsInfo.add(val);
+      renderTopics();
+    }
+    topicInput.value = '';
+  }
+
+  function removeTopic(text) {
+    topicsInfo.delete(text);
+    renderTopics();
+  }
+
+  function renderTopics() {
+    // Remove all current tags
+    const tags = topicsContainer.querySelectorAll('.topic-tag');
+    tags.forEach(t => t.remove());
+
+    // Re-insert 
+    const arr = [...topicsInfo];
+    arr.forEach(val => {
+      const tag = document.createElement('div');
+      tag.className = 'topic-tag';
+      tag.innerHTML = `${val} <span class="topic-remove" onclick="removeTopic('${val}')">×</span>`;
+      topicsContainer.insertBefore(tag, topicInput);
+    });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const data = {
+      description: document.getElementById('description').value,
+      website: document.getElementById('website').value,
+      includeInHome: document.getElementById('includeInHome').checked,
+      topics: [...topicsInfo]
+    };
+
+    const json = JSON.stringify(data, null, 2);
+
+    try {
+      fetch('http://localhost:__PORT__/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: json
+      }).catch(() => {});
+    } catch (_) {}
+    
+    // Fallback UI
+    document.body.innerHTML = `
+      <div class="modal">
+        <div class="modal-header"><h1>Saved</h1></div>
+        <div class="modal-body"><pre style="font-size:12px; color:#79c0ff; white-space:pre-wrap;">${json}</pre><br/>You can safely close this window.</div>
+      </div>
+    `;
+  }
+</script>
+</body>
+</html>

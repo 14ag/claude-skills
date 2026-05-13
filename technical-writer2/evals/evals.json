@@ -1,0 +1,29 @@
+{
+  "skill_name": "technical-writer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I have a new python project that is a web scraper for real estate data using beautifulsoup and requests. Could you document my project and generate a README?",
+      "expected_output": "A README.md file following the Microsoft Engineering Playbook standards, containing standard sections, with professional B2 level tone. Contains no subjective adjectives or adverbs without objective comparison.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "The login page crashes when I try to use a password longer than 32 characters. Write a bug report for this.",
+      "expected_output": "A structured GitHub issue describing the bug, following standard issue templates with steps to reproduce, expected behavior, and actual behavior. Professional tone.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Write a commit message for these changes: I added a new user authentication module with JWT tokens and fixed a typo in the main page.",
+      "expected_output": "A Conventional Commits formatted message following the 7 rules of a great git commit message.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Create GitHub issue templates for bug reports and feature requests for this repo, and disable blank issues.",
+      "expected_output": "Repository-ready issue authoring assets under .github/ISSUE_TEMPLATE, using either Markdown templates or YAML issue forms with valid GitHub metadata and a config.yml that disables blank issues.",
+      "files": []
+    }
+  ]
+}

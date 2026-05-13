@@ -65,4 +65,42 @@ These patterns encompass word choices, sentence structures, and formatting quirk
 **Problem:** AI hyphenates common word pairs with perfect consistency, or overuses tight compound adjectives. Humans usually lack this rigid uniformity.
 **Humanization Strategy:** Drop the hyphens on less formal text, or expand the adjective into a descriptive clause.
 
-<!-- Patterns 20-25 are in references/communication-patterns.md -->
+## 20. Nominal Loading (Noun/Adjective Overload)
+**Problem:** AI text overloads sentences with nouns and adjectives to appear information-dense and professional. This is a measurable stylometric signal: AI-generated text has a significantly higher noun/adjective-to-total-words ratio than human text. It also under-produces pronouns and auxiliary verbs.
+
+**Signs of nominal loading:**
+- Long noun phrases stacked without pronouns: "The implementation of the configuration management system..."
+- No referential chains across sentences (every sentence restates the full noun, not "it" or "they")
+- Rare auxiliary verbs: "must", "might", "could", "should have been", "would have"
+
+**Humanization Strategy:**
+1. After rewriting for vocabulary, count content words in a paragraph. If nouns + adjectives exceed 60% of content words, rewrite.
+2. Introduce pronoun referential chains: once a noun is introduced, refer to it as "it", "this", "they", or "that" in subsequent sentences.
+3. Add auxiliary verbs to shade meaning: "The system can handle..." → "The system might handle... it could also..."
+4. Vary noun phrase complexity: short ones ("the config system") mixed with full ones.
+
+## 21. Contraction Absence
+**Problem:** AI defaults to formal expanded forms ("do not", "it is", "we are", "cannot") uniformly across all registers. In informal and moderate-register writing, this reads as stiff and unnatural. Contraction frequency is a measurable POS balance signal.
+
+**Humanization Strategy:** Where the register allows (blog posts, documentation, reports — anything not legal or medical), use contractions:
+- "do not" → "don't"
+- "it is" → "it's"
+- "we are" → "we're"
+- "cannot" → "can't"
+- "they are" → "they're"
+- "will not" → "won't"
+
+Do not force contractions into formal legal, medical, or regulatory documents.
+
+## 22. Uniform Lexical Density
+**Problem:** AI maintains consistently high lexical density (content words / total words) across all sentences regardless of context. Human writing varies density — technical explanations are dense, linking sentences are light. Detectors measure this variance; flat density is an AI signal.
+
+**Humanization Strategy:** After every 2-3 high-density technical sentences, add a low-density linking sentence. Examples:
+- "That is the core constraint."
+- "Here is why it matters."
+- "This changes things."
+- "So far, so predictable."
+
+These sentences drop density intentionally and create the variation pattern detectors expect from human writing.
+
+<!-- Patterns 23+ are in references/communication-patterns.md -->

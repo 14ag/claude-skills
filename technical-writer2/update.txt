@@ -1,0 +1,10 @@
+rename this skill to technical-writer
+features added so far have been built using refrences from official docs. 
+during feature addition the prompts used instructed for research on standards. however, this is not the case for the feature addition process used to add feature 'writing github issues'
+carry out research on the existing standards and perform refinements.
+
+while maintaining whats implemented so far, rebrand this skill as a technical writer. carry out research that will help in reforms.
+
+to reduce context usage, remove implementation details from the skill.md and put them in /refrences. afterwards, link the skill.md to the know how. the skill.md is to state what this skill can do. if one of its actions is needed the skill points the agent to the right refrence file. before implementing this carry out a feasibility test to find out if the refactor actually saves context.
+
+if it saves context set it as a standard in skill-creator then run QA on both skills
